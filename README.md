@@ -94,23 +94,23 @@ Annotation data collection can be customized by adding a form to the “template
 
 **Navigation and Zooming:**
 
-    * **Keyboard Shortcuts:** Utilize WASD or arrow keys for convenient navigation.
-    * **Click Preview Area:** Instantly navigate to a specific part of the image by clicking on the preview area.
-    * **Mouse Scroll Wheel:** Scroll to zoom in and out.
-    * **Touch Controls:** Pinch to zoom and move around the image by dragging your mouse or using touch controls.
-    * **Zoom Controller:** Utilize buttons, a slider, or directly edit the zoom level number controller for precise adjustments.
+* **Keyboard Shortcuts:** Utilize WASD or arrow keys for convenient navigation.
+* **Click Preview Area:** Instantly navigate to a specific part of the image by clicking on the preview area.
+* **Mouse Scroll Wheel:** Scroll to zoom in and out.
+* **Touch Controls:** Pinch to zoom and move around the image by dragging your mouse or using touch controls.
+* **Zoom Controller:** Utilize buttons, a slider, or directly edit the zoom level number controller for precise adjustments.
 
 **Toolbar Functions:**
 
-    * **Layers <img src="https://fonts.gstatic.com/s/i/materialicons/view_list/v4/24px.svg" alt="Layers Button"> :** Access the layers panel to overlay heatmaps, segmentations, saved measurements, and human annotations.
-    * **Magnifier <img src="https://fonts.gstatic.com/s/i/materialicons/search/v4/24px.svg" alt="Magnifier Button">:** Add a magnified region, bypassing annotations and enhancements.
-    * **Measurement <img src="https://fonts.gstatic.com/s/i/materialicons/space_bar/v4/24px.svg" alt="Measurement Button">:** View and save measurements along direct lines or projected onto the x and y axes.
-    * **Enhance <img src="https://fonts.gstatic.com/s/i/materialicons/invert_colors/v4/24px.svg" alt="Enahnce Button">:** Apply image transformations for enhanced investigation.
-    * **Share View <img src="https://fonts.gstatic.com/s/i/materialicons/share/v4/24px.svg" alt="Share Button">:** Generate a link to share the current slide position, zoom, and active layers.
-    * **Side-by-Side <img src="https://fonts.gstatic.com/s/i/materialicons/view_carousel/v4/24px.svg" alt="Side-by-Side Button">:** Split the viewing area into two views with different layers or enhancements. Control zoom levels independently.
-    * **Heatmap <img src="https://fonts.gstatic.com/s/i/materialicons/satellite/v4/24px.svg" alt="Heatmap Button">:** Navigate to the Heatmap Viewer for specialized analysis, provide feedback on false positive and negative areas of a heatmap.
-    * **Segmentation <img src="https://fonts.gstatic.com/s/i/materialicons/timeline/v6/24px.svg" alt="Segmentation Button"> and Prediction/Classification <img src="https://fonts.gstatic.com/s/i/materialicons/aspect_ratio/v4/24px.svg" alt="Prediction Button">:** Open viewers for computer vision and machine learning tools (covered in the "Machine Learning Tools" section).
-    * **Slide Capture <img src="https://fonts.gstatic.com/s/i/materialicons/camera_enhance/v4/24px.svg" alt="Capture Button">:** Download the current view as a JPEG file.
+* **Layers <img src="https://fonts.gstatic.com/s/i/materialicons/view_list/v4/24px.svg" alt="Layers Button"> :** Access the layers panel to overlay heatmaps, segmentations, saved measurements, and human annotations.
+* **Magnifier <img src="https://fonts.gstatic.com/s/i/materialicons/search/v4/24px.svg" alt="Magnifier Button">:** Add a magnified region, bypassing annotations and enhancements.
+* **Measurement <img src="https://fonts.gstatic.com/s/i/materialicons/space_bar/v4/24px.svg" alt="Measurement Button">:** View and save measurements along direct lines or projected onto the x and y axes.
+* **Enhance <img src="https://fonts.gstatic.com/s/i/materialicons/invert_colors/v4/24px.svg" alt="Enahnce Button">:** Apply image transformations for enhanced investigation.
+* **Share View <img src="https://fonts.gstatic.com/s/i/materialicons/share/v4/24px.svg" alt="Share Button">:** Generate a link to share the current slide position, zoom, and active layers.
+* **Side-by-Side <img src="https://fonts.gstatic.com/s/i/materialicons/view_carousel/v4/24px.svg" alt="Side-by-Side Button">:** Split the viewing area into two views with different layers or enhancements. Control zoom levels independently.
+* **Heatmap <img src="https://fonts.gstatic.com/s/i/materialicons/satellite/v4/24px.svg" alt="Heatmap Button">:** Navigate to the Heatmap Viewer for specialized analysis, provide feedback on false positive and negative areas of a heatmap.
+* **Segmentation <img src="https://fonts.gstatic.com/s/i/materialicons/timeline/v6/24px.svg" alt="Segmentation Button"> and Prediction/Classification <img src="https://fonts.gstatic.com/s/i/materialicons/aspect_ratio/v4/24px.svg" alt="Prediction Button">:** Open viewers for computer vision and machine learning tools (covered in the "Machine Learning Tools" section).
+* **Slide Capture <img src="https://fonts.gstatic.com/s/i/materialicons/camera_enhance/v4/24px.svg" alt="Capture Button">:** Download the current view as a JPEG file.
 
 
 ## Annotation
@@ -121,17 +121,17 @@ Click the annotation icon  <img src="https://fonts.gstatic.com/s/i/materialicons
 
 **Single Drawing Mode:**
 
-    * Before drawing, provide a name for the annotation.
-    * Fill out the configured form for the caMicroscope deployment (refer to the "Annotation Template" in the Administration section for form customization details).
-    * An annotation is automatically saved once drawn in this mode.
+* Before drawing, provide a name for the annotation.
+* Fill out the configured form for the caMicroscope deployment (refer to the "Annotation Template" in the Administration section for form customization details).
+* An annotation is automatically saved once drawn in this mode.
 
 **Multiple Drawing Mode:**
 
 
 
-    * Click the annotation icon a second time to switch to this mode.
-    * Draw multiple shapes with the same form data.
-    * Save the annotations by clicking the “save” button in the annotation panel.
+* Click the annotation icon a second time to switch to this mode.
+* Draw multiple shapes with the same form data.
+* Save the annotations by clicking the “save” button in the annotation panel.
 
 The drawing mode is visually indicated:
 
@@ -156,14 +156,14 @@ For workflows requiring more control and speed, caMicroscope offers a preset lab
 
 **Selecting a Preset:**
 
-    * Click the preset label icon to open a list of presets.
-    * Choose a preset to automatically set the color, viewer mode, and form data for annotation.
-    * In addition to all shape types from annotation, a "BRUSH" drawing mode is added as an option for preset labels which creates squares of a predefined size on a fixed grid, providing an efficient way to "paint" the annotation.
+* Click the preset label icon to open a list of presets.
+* Choose a preset to automatically set the color, viewer mode, and form data for annotation.
+* In addition to all shape types from annotation, a "BRUSH" drawing mode is added as an option for preset labels which creates squares of a predefined size on a fixed grid, providing an efficient way to "paint" the annotation.
 
 **Creating Label Types:**
 
-    * To add a label type, set the name, color, and shape (drawing mode) for the preset.
-    * Assign an unused keyboard shortcut key combination with control for quicker annotation.
+* To add a label type, set the name, color, and shape (drawing mode) for the preset.
+* Assign an unused keyboard shortcut key combination with control for quicker annotation.
 
 This streamlined approach enhances annotation efficiency, allowing for rapid and controlled labeling. Explore preset label annotation to optimize your workflow.
 
