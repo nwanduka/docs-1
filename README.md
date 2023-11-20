@@ -1,22 +1,29 @@
 # caMicroscope User Documentation
 
+Welcome to the user documentation for caMicroscope.
+* [Setup Installation, and Hosting](#setup-installation-and-hosting) covers getting started with caMicroscope for multiple use cases.
+* [Administration](#administration) covers adding slides, users, and configuration to tailor caMicroscope to your application.
+* [General Usage](#general-usage) covers using the viewer modes, annotation, and machine learning intergrations.
+* [DICOM](#dicom) covers using caMicroscope with DICOM.
+* [Links to other Resources](#links-to-other-resources) has links to other useful guides.
 
-# Setup, Installation, and Hosting
+
+## Setup, Installation, and Hosting
 
 
-## Getting Started
+### Getting Started
 
 The primary way in which caMicroscope is run is through the distro repository ([https://github.com/camicroscope/distro](https://github.com/camicroscope/distro)). This contains manifests with references to each microservice, as well as the necessary configuration to run caMicroscope. The distro repository contains multiple docker-compose manifests for different deployment needs. The necessary manifest, configuration, and installation is different for development use, local use, or for a web deployment.
 
 
-## For Development or Personal Use
+### For Development or Personal Use
 
 The develop.yml file ([https://github.com/camicroscope/Distro/blob/master/develop.yml](https://github.com/camicroscope/Distro/blob/master/develop.yml)) is intended for development or personal use. Most notably, this means that all security features are disabled; users do not need to log in to perform any action on the platform. These settings are controlled by the DISABLE_SEC and ALLOW_PUBLIC environment variables under the back/caracal service in develop.yml.
 
 Most services are accessed through back (with the exception of the DICOM server, which has its own optional interface separate to caMicroscope’s UI; see the “Dicom” section of this document). Accessing http://&lt;host location, usually localhost>:4010 should open the caMicroscope user landing page. This port can be configured in back/caracal’s ‘ports’ section in develop.yml.
 
 
-## For Production
+### For Production
 
 The caMicroscope.yml file is more suited for production, but some additional steps are needed to set up support for security. First, some service, internal or external, needs to support login. This json web key (JWK) should be accessible at a url set to the environment variable “JWK_URL” under the back/caracal service. Correspondingly, a login page should be set up and mounted to ‘/src/static/login.html’ within back/caracal in order to trigger a login with whatever service is needed.
 
@@ -43,10 +50,10 @@ Alternatively, you can use kc_caMicroscope.yml for a configuration which self-ho
     * Set a password under credentials -> add password
 
 
-# Administration
+## Administration
 
 
-## APIs, Route Configuration, and Security
+### APIs, Route Configuration, and Security
 
 Our backend service, caracal, is designed around a series of modular “handlers” which are executed in sequence and give each api endpoint (or “route”) their properties. The configuration in ./config/routes.json is the default setup. Some handlers, such as the permission handler, are impacted by other environment variables and can thus be globally disabled by setting the “DISABLE_SEC” environment variable flag. Removing a route from this configuration file, or using the disabled route handler in a route, disables the route from any use.
 
@@ -55,21 +62,21 @@ The APIs generally return or accept JSON documents, with notable exceptions for 
 When security is enabled, a user’s json web token (authentication token) must be included in any request which has been configured with a login handler. 
 
 
-## Adding Data Directly to the Database
+### Adding Data Directly to the Database
 
 Adding data to the database bypasses all security and route configuration provided by caMicroscope and should be done with caution. By default, the mongodb port is not exposed beyond the caMicroscope subnet, but this can be exposed to another secure subnet if desired. Please do this with caution if at all, as people have lost data to vandalism from this configuration.
 
 More recommended is to use the interactive shell in the ca-mongo container or pod itself. This is done by running `docker exec -it ca-mongo mongo` on the host machine. caMicroscope by default uses a database called `camic`. Use `show collections` to see what document types are available, and use `db.&lt;collection name>.findOne()` to get an example document if one exists. Please see the relevant mongo documentation (https://www.mongodb.com/docs/v3.6/reference/mongo-shell/) for additional guidance of using mongodb. 
 
 
-## Adding Users
+### Adding Users
 
 If an instance is secured, users of caMicroscope need a user entry in the ‘user’ collection in mongodb. This must be done with an email matching the sub or email field in the JWT from the authentication provider, including keycloak. Creating the first administrative user allows for subsequent users to be added via the caMicroscope interface (or the /data/user/add api). There are two ways which people typically add the first user: they may disable security and add the user through the signup interface before re-enabling security, or they may add a user directly to mongodb.
 
  
 
 
-## Adding Slides
+### Adding Slides
 
 For any slide to be visible in caMicroscope, the WSI file must exist, and there must be a record in the database to describe it.
 
@@ -82,15 +89,15 @@ Note that if the file path in the database does not match a file (e.g. if a file
 Note that the file location need not be uniquely described in the database; you can make multiple metadata records pointing to the same file, which will separate data products associated with the slide.
 
 
-## Annotation Template
+### Annotation Template
 
 Annotation data collection can be customized by adding a form to the “template” collection. If multiple templates are present, a user can choose any by name. By default, this template is a name and notes. 
 
 
-# General Usage
+## General Usage
 
 
-## Viewing
+### Viewing
 
 **Navigation and Zooming:**
 
@@ -113,7 +120,7 @@ Annotation data collection can be customized by adding a form to the “template
 * **Slide Capture <img src="https://fonts.gstatic.com/s/i/materialicons/camera_enhance/v4/24px.svg" alt="Capture Button">:** Download the current view as a JPEG file.
 
 
-## Annotation
+### Annotation
 
 **Annotation:**
 
@@ -148,7 +155,7 @@ The drawing mode is visually indicated:
 * **Drawing Modes:** By default, the drawing mode is freehand. Change it to a rectangle, point annotation, or a polygon of connected points.
 
 
-## Using Preset Labels
+### Using Preset Labels
 
 **Preset Label Annotation Mode:**
 
@@ -168,10 +175,10 @@ For workflows requiring more control and speed, caMicroscope offers a preset lab
 This streamlined approach enhances annotation efficiency, allowing for rapid and controlled labeling. Explore preset label annotation to optimize your workflow.
 
 
-# **Machine Learning Tools**
+## **Machine Learning Tools**
 
 
-## Adding a Model
+### Adding a Model
 
 To use a machine learning model in caMicroscope, it must be added to the app in which it is meant to be used. To export a pre-trained model for use with caMicroscope, use the tfjs export format (see[ TensorFlow.js Guide](https://www.tensorflow.org/js/guide/conversion) for a guide for this export).
 
@@ -186,42 +193,42 @@ Information for the uploaded models can be found by clicking the model informati
 A selection of pre-trained caMicroscope compatible machine learning models are provided at[ caMicroscope/tfjs-models](https://github.com/camicroscope/tfjs-models/).
 
 
-## Using Models in The Main Viewer
+### Using Models in The Main Viewer
 
 The “smart pens” feature can use either computer vision or a segmentation model to enhance segmentation by following contours.
 
 
-## Segmentation Application
+### Segmentation Application
 
 The segmentation button <img src="https://fonts.gstatic.com/s/i/materialicons/timeline/v6/24px.svg" alt="Segmentation Button"> in the main viewer toolbar opens the segmentation mode. Click the segmentation icon in this application to change the interaction mode to draw a region on which to compute segmentation. By default, this uses openCV’s edge detection, but this or any uploaded model can be selected by the model selection dropdown. These results can be given a name and notes and saved as an annotation if desired.
 
 
-## Classification/Prediction Application
+### Classification/Prediction Application
 
 The predict button <img src="https://fonts.gstatic.com/s/i/materialicons/aspect_ratio/v4/24px.svg" alt="Prediction Button"> in the main viewer toolbar opens prediction mode, which can be used to classify or predict regions of an image. Select a model using the model selection dropdown, then click the predict icon in this application to draw a region and have the model return a classification/prediction.
 
 
-## Workbench (Creating a Model)
+### Workbench (Creating a Model)
 
 From the table view, click “Workbench” in the top bar to open the model creation and training workbench. This application is a wizard to add and tweak layers for a model and train against labeling datasets. Data for these datasets can be created with the “labeling” mode from the main viewer’s toolbar.
 
 
-# Dicom
+## Dicom
 
 caMicroscope seamlessly integrates with DICOM servers, providing a convenient way to access and review pathology images. By default, caMicroscope is configured to connect to the Orthanc DICOM server, which is accessible on port 8042.
 
 
-## Accessing the Orthanc DICOM Server
+### Accessing the Orthanc DICOM Server
 
 To access the Orthanc DICOM server, navigate to the designated port (e.g., http://your-server-address:8042) in your web browser. This allows you to interact with DICOM images stored on the server.
 
 
-## Adding Pathology Images
+### Adding Pathology Images
 
 Adding DICOM pathology images to the Orthanc DICOM server automatically incorporates them into caMicroscope for detailed review. The integration streamlines the workflow, ensuring that relevant images are readily available for analysis within the caMicroscope environment.
 
 
-# Links to other Resources
+## Links to other Resources
 
 Website: [https://camicroscope.github.io/](https://camicroscope.github.io/)
 
@@ -234,4 +241,6 @@ Code of Conduct: [https://camicroscope.github.io/conduct.html](https://camicrosc
 Discussion Board (new): [https://github.com/orgs/camicroscope/discussions](https://github.com/orgs/camicroscope/discussions) 
 
 Github: [https://github.com/caMicroscope](https://github.com/caMicroscope) 
+
+**[Improve this guide by submitting feedback!](https://github.com/camicroscope/docs/issues/new/choose)** 
 
