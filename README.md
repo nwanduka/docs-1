@@ -78,9 +78,25 @@ If an instance is secured, users of caMicroscope need a user entry in the ‘use
 
 ### Adding Slides
 
-For any slide to be visible in caMicroscope, the WSI file must exist, and there must be a record in the database to describe it.
+For any slide to be visible in caMicroscope, the Whole Slide Image (WSI) file must exist, and there must be a record in the database to describe it. Both of these can be added simultaneously through the caMicroscope UI.
 
-Both of these can be added simultaneously through the caMicroscope UI. From the table, click upload, pick a compatible file, then give the slide a unique name. The same process works for the batch uploader, which can be found as an extended option of the download button from the table.
+Follow these steps to add a slide:
+1. Navigate to the slides tab in caMicroscope UI
+2. From the table, click upload
+
+   ![image](https://github.com/camicroscope/docs/assets/122698422/77567b98-773d-4657-a780-91c31ad71592)
+
+3. Choose a compatible file (svs or DICOM). You can upload a file in three ways:
+   1. From your local folder
+   2. From your Google drive
+   3. Using a URL
+
+The file name and token field should fill automatically.
+> Note: If the file name is not automatically filled when you upload the file, you will have to fill it in manually. If this occurs, be sure to add the file extension after the file name, like this _sampleslide.svs_
+4. Give the slide a unique name, then click the right-pointing arrow.
+5. Click the Finish Upload button 
+
+The same process works for the batch uploader, which can be found as an extended option of the download button from the table.
 
 If the slides are already present, you can use SlideUtil.py within the ca-load container or pod (for docker, use `docker exec -it ca-load`). This requires a manifest of slides which should already exist in the ./images/ (or customized location) filesystem mount. This is useful if you’re working on a system with existing slide images, where you can remap the ./images mount to any location on the host server.
 
